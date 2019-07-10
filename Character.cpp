@@ -25,6 +25,7 @@ Character::Character(){//sf::Texture* texture, sf::Vector2u imageCount, float sw
   //  weapon = nullptr;
     critic = 0;
     exp = 0;
+    MaxLevel=20;
 
     //
 
@@ -39,10 +40,48 @@ Character::Character(){//sf::Texture* texture, sf::Vector2u imageCount, float sw
 
 }
 
+int Character::getHp() const {
+    return HP;
+}
+
+void Character::setHp(int hp) {
+    HP = hp;
+}
+
+int Character::getCritic() const {
+    return critic;
+}
+
+void Character::setCritic(int critic) {
+    Character::critic = critic;
+}
+
+int Character::getExp() const {
+    return exp;
+}
+
+void Character::setExp(int exp) {
+    Character::exp = exp;
+}
+
+int Character::getMaxEsp() const {
+    return MaxEsp;
+}
+
+void Character::setMaxEsp(int maxEsp) {
+    MaxEsp = maxEsp;
+}
 
 
+int Character::getLevel() const {
+    return level;
+}
 
-Character::~Character() = default;
+void Character::setLevel(int level) {
+    Character::level = level;
+}
+
+Character::~Character() = default;//per ora così...poi aggiungo weapon
    // this->weapon = nullptr;
 
 
@@ -62,6 +101,9 @@ Character& Character:: operator=(const Character &other){
        posY=other.posY;
        critic=other.critic;
        exp=other.exp;
+       MaxEsp=other.MaxEsp;
+       level=other.level;
+       MaxLevel=other.MaxLevel;
        armor=other.armor;
        //TODO crea un metodo privato che richiama sia operatore sia costruttotre copia
        return *this;
@@ -78,13 +120,6 @@ Character::Character(const Character&){
 
 
 
-int Character::getHP() const {
-    return HP;
-}
-
-void Character::setHP(int hp) {
-    this->HP = hp;
-}
 
 //Weapon* Character::getWeapon() {
 //  return weapon;
@@ -133,6 +168,8 @@ bool Character::fight(Character &enemy) {
 }
 
 int Character::receiveDamage(int points) {
+
+    //TODO modifica
     if (armor > 4)
         points /= 3;
     else if (armor > 2)
@@ -146,14 +183,20 @@ int Character::receiveDamage(int points) {
     HP -= points;
     if (points > 10)
         armor--;
+    //
+
+
 
     return points;
 }
 
 
+
+
+
 bool Character::isLegalFight(const Character &enemy) const {
     int maxDistance = 1;
-    if ((abs(posX - enemy.posX) > maxDistance) || (abs(posY - enemy.posY) > maxDistance))
+    if ((abs(posX - enemy.posX) > maxDistance) || (abs(posY - enemy.posY) > maxDistance))//TODO enemy->minion
         return false;
     return true;
 }

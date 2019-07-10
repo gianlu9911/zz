@@ -8,7 +8,7 @@ public:
 
     Dice();
     ~Dice();
-    void roll();
+    int roll();
 
 private:
 

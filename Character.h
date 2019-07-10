@@ -15,6 +15,7 @@ public:
 
 
 
+
     ~Character();
 
 
@@ -61,6 +62,26 @@ public:
 
     int receiveDamage(int points);
 
+    int getHp() const;
+
+    void setHp(int hp);
+
+    int getCritic() const;
+
+    void setCritic(int critic);
+
+    int getExp() const;
+
+    void setExp(int exp);
+
+    int getMaxEsp() const;
+
+    void setMaxEsp(int maxEsp);
+
+    int getLevel() const;
+
+    void setLevel(int level);
+
 
 
 
@@ -83,6 +104,9 @@ private:
   //  Weapon* weapon;
     int critic;
     int exp;
+    int MaxEsp;
+    int level;
+    int MaxLevel;
 
 
 
